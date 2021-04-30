@@ -139,9 +139,9 @@ class Home extends Component {
                                     <td>{product.name}</td>
                                     <td>{product.priority}</td>
                                     <td>{product.dueDate.split("T")[0]}</td>
-                                    <td>{product.status} <span> <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil"></i></button></span>
+                                    <td>{product.status} <span> <button type="button" className="btn btn-primary" data-toggle="modal" data-target={"#" + product._id}><i class="fa fa-pencil"></i></button></span>
 
-                                        <div className="modal fade" id="exampleModal{product._id}" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div className="modal fade" id={product._id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div className="modal-dialog" role="document">
                                                 <div className="modal-content">
                                                     <div className="modal-header">
