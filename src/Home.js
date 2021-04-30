@@ -24,8 +24,7 @@ class Home extends Component {
 
             },
             body: {
-                "id": id,
-                "CSRFToken": "OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA=="
+                "id": id
             }
         }).then((result) => {
 
