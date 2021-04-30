@@ -81,14 +81,14 @@ class Home extends Component {
     }
 
     updateValue(id, data) {
-
+        alert("Update status");
         fetch("https://serajtodo.herokuapp.com/api/updateData", {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ "id": id, "data": data })
+            body: JSON.stringify({ "id": id, "status": data })
         })
             .then(res => res.json())
             .then(
