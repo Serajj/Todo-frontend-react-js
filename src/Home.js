@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import { DropdownButton, Dropdown } from 'react-dropdown';
 
 class Home extends Component {
 
@@ -139,44 +140,14 @@ class Home extends Component {
                                     <td>{product.name}</td>
                                     <td>{product.priority}</td>
                                     <td>{product.dueDate.split("T")[0]}</td>
-                                    <td>{product.status} <span> <button type="button" className="btn btn-primary" data-toggle="modal" data-target={"#" + product._id}><i class="fa fa-pencil"></i></button></span>
+                                    <td>{product.status} <span> <i class="fa fa-pencil"></i></span>
 
-                                        <div className="modal fade" id={product._id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div className="modal-dialog" role="document">
-                                                <div className="modal-content">
-                                                    <div className="modal-header">
-                                                        <h5 className="modal-title" id="exampleModalLabel">Change Status</h5>
-                                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div className="modal-body">
-                                                        <form name="contactform" onSubmit={this.contactSubmit.bind(this)}>
-                                                            <fieldset>
-                                                                <div className="row">
-                                                                    <div className="input-group input-group-sm mb-3">
-                                                                        <span className="input-group-text">Status</span>
-                                                                        <select
-                                                                            className="form-control" ref="status" onChange={this.handleChange.bind(this, "status")} value={this.state.fields["status"]} >
-                                                                            <option value="">Select Option</option>
-                                                                            <option value="Review">Review</option>
-                                                                            <option value="Completed">Completed</option>
-                                                                        </select>
-                                                                        <span style={{ color: "red" }}> {this.state.errors["status"]}</span>
-                                                                    </div>
-                                                                </div>
+                                        <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+                                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                        </DropdownButton>
 
-
-                                                            </fieldset>
-                                                        </form>
-                                                    </div>
-                                                    <div className="modal-footer">
-                                                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button className="btn btn-success" type="submit">Update</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
 
                                     </td>
