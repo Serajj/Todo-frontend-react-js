@@ -7,7 +7,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        fetch('http://127.0.0.1:3000/api/getTodoList')
+        fetch('https://serajtodo.herokuapp.com/api/getTodoList')
             .then((response) => response.json())
             .then(booksList => {
                 this.setState({ books: booksList.data });
@@ -16,7 +16,7 @@ class Home extends Component {
 
 
     deleteItem(id) {
-        fetch('http://127.0.0.1:3000/api/delete', {
+        fetch('https://serajtodo.herokuapp.com/api/delete', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

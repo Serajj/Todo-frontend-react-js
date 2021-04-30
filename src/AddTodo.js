@@ -57,7 +57,7 @@ class AddTodo extends Component {
 
         if (this.handleValidation()) {
             console.log(this.state.fields);
-            fetch('http://127.0.0.1:3000/api/add', {
+            fetch('https://serajtodo.herokuapp.com/api/add', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
