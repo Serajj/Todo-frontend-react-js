@@ -28,6 +28,7 @@ class Home extends Component {
             .then(
                 (result) => {
                     alert("Deleted Successfully !!");
+                    window.location.href = "/";
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
@@ -73,7 +74,47 @@ class Home extends Component {
                                     <td>{product.name}</td>
                                     <td>{product.priority}</td>
                                     <td>{product.dueDate.split("T")[0]}</td>
-                                    <td>{product.status} <span> <i class="fa fa-pencil" onClick={() => { alert('clicked') }}></i></span></td>
+                                    <td>{product.status} <span> <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal" ></i></span>
+
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Change Status</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form name="contactform" onSubmit={this.contactSubmit.bind(this)}>
+                                                            <fieldset>
+                                                                <div className="row">
+                                                                    <div className="input-group input-group-sm mb-3">
+                                                                        <span className="input-group-text">Status</span>
+                                                                        <select
+                                                                            className="form-control" ref="status" onChange={this.handleChange.bind(this, "status")} value={this.state.fields["status"]} >
+                                                                            <option value="">Select Option</option>
+                                                                            <option value="Review">Review</option>
+                                                                            <option value="Completed">Completed</option>
+                                                                        </select>
+                                                                        <span style={{ color: "red" }}> {this.state.errors["status"]}</span>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </fieldset>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button className="btn btn-success" type="submit">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
 
                                     <td> <span> <i class="fa fa-remove" onClick={() => { this.deleteItem(product._id) }}></i></span></td>
                                 </tr>
