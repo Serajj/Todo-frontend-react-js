@@ -1,6 +1,5 @@
 import React, { Component, useState } from 'react';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+
 
 class Home extends Component {
 
@@ -81,6 +80,32 @@ class Home extends Component {
             });
     }
 
+    updateValue(id, data) {
+
+        fetch("https://serajtodo.herokuapp.com/api/updateData", {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "id": id, "data": data })
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    alert("Updated Successfully !!");
+                    window.location.href = "/";
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    alert('failed to update');
+                    console.log(error);
+                }
+            )
+
+    }
 
     deleteItem(id) {
         fetch("https://serajtodo.herokuapp.com/api/todoListRemove", {
@@ -141,7 +166,7 @@ class Home extends Component {
                                     <td>{product.name}</td>
                                     <td>{product.priority}</td>
                                     <td>{product.dueDate.split("T")[0]}</td>
-                                    <td>{product.status} <span> <i class="fa fa-pencil"></i> <Dropdown options={['one', 'two', 'three']} onChange={this._onSelect} value={'two'} ><i class="fa fa-pencil"></i></Dropdown></span>
+                                    <td>{product.status} <span> <i class="fa fa-pencil" onClick={() => { this.updateValue(product._id, product.status) }}></i></span>
 
 
 
