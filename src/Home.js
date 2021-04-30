@@ -22,7 +22,7 @@ class Home extends Component {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(card_data)
+            body: JSON.stringify({ "id": id })
 
         }
 
