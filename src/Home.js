@@ -6,6 +6,95 @@ class Home extends Component {
         books: []
     }
 
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            fields: {},
+            errors: {}
+        }
+    }
+
+    handleValidation() {
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+
+        //Name
+        if (!fields["name"]) {
+            formIsValid = false;
+            errors["name"] = "Cannot be empty";
+        }
+
+        if (typeof fields["priority"] !== "undefined") {
+            if (!fields["priority"].match(/^[a-zA-Z]+$/)) {
+                formIsValid = false;
+                errors["priority"] = "Only letters";
+            }
+        }
+
+        //Email
+        if (!fields["dueDate"]) {
+            formIsValid = false;
+            errors["dueDate"] = "Cannot be empty";
+        }
+
+        if (!fields["status"]) {
+            formIsValid = false;
+            errors["status"] = "Cannot be empty";
+        }
+
+
+
+        this.setState({ errors: errors });
+        return formIsValid;
+    }
+
+    contactSubmit(e) {
+        e.preventDefault();
+
+        if (this.handleValidation()) {
+            console.log(this.state.fields);
+            fetch('https://serajtodo.herokuapp.com/api/add', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.state.fields)
+            }).then((result) => {
+
+                result.json().then((responce) => {
+                    console.log(responce);
+
+                    if (responce.status) {
+                        alert(responce.message);
+                        window.location.href = "/";
+
+                    }
+                });
+            });
+
+
+        } else {
+            alert("Form has errors.")
+        }
+
+    }
+
+    handleChange(field, e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.value;
+        this.setState({ fields });
+    }
+
+
+
+
+
+
+
     componentDidMount() {
         fetch('https://serajtodo.herokuapp.com/api/getTodoList')
             .then((response) => response.json())
