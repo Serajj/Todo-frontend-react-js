@@ -21,11 +21,8 @@ class Home extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-
             },
-            body: {
-                "id": id
-            }
+            body: id
         }).then((result) => {
 
             result.json().then((responce) => {
