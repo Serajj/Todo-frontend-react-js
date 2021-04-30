@@ -3,42 +3,18 @@ import React, { Component, useState } from 'react';
 class Home extends Component {
 
     state = {
-        books: []
+        books: [],
+        fields: {},
+        errors: {}
     }
 
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            fields: {},
-            errors: {}
-        }
-    }
 
     handleValidation() {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
 
-        //Name
-        if (!fields["name"]) {
-            formIsValid = false;
-            errors["name"] = "Cannot be empty";
-        }
 
-        if (typeof fields["priority"] !== "undefined") {
-            if (!fields["priority"].match(/^[a-zA-Z]+$/)) {
-                formIsValid = false;
-                errors["priority"] = "Only letters";
-            }
-        }
-
-        //Email
-        if (!fields["dueDate"]) {
-            formIsValid = false;
-            errors["dueDate"] = "Cannot be empty";
-        }
 
         if (!fields["status"]) {
             formIsValid = false;
@@ -56,7 +32,7 @@ class Home extends Component {
 
         if (this.handleValidation()) {
             console.log(this.state.fields);
-            fetch('https://serajtodo.herokuapp.com/api/add', {
+            fetch('https://serajtodo.herokuapp.com/api/updateData', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
