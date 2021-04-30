@@ -141,8 +141,8 @@ class Home extends Component {
                                     <td>{product.name}</td>
                                     <td>{product.priority}</td>
                                     <td>{product.dueDate.split("T")[0]}</td>
-                                    <td>{product.status} <span> <i class="fa fa-pencil"></i></span>
-                                        <Dropdown options={['one', 'two', 'three']} onChange={this._onSelect} value={'two'} placeholder="Select an option" />;
+                                    <td>{product.status} <span> <i class="fa fa-pencil"></i> <Dropdown options={['one', 'two', 'three']} onChange={this._onSelect} value={'two'} ><i class="fa fa-pencil"></i></Dropdown></span>
+
 
 
                                     </td>
