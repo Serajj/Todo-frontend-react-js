@@ -16,11 +16,27 @@ class Home extends Component {
 
 
     deleteItem(id) {
-        fetch('https://serajtodo.herokuapp.com/api/getTodoList')
-            .then((response) => response.json())
-            .then(booksList => {
-                alert("data fetched")
-            });
+        fetch("https://serajtodo.herokuapp.com/api/todoListRemove", {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: { "id": id }
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    alert("Deleted Successfully !!");
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    alert('failed to delete');
+                    console.log(error);
+                }
+            )
     }
 
     render() {
