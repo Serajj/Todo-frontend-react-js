@@ -16,25 +16,7 @@ class Home extends Component {
 
 
     deleteItem(id) {
-        fetch('https://serajtodo.herokuapp.com/api/delete', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: id
-        }).then((result) => {
-
-            result.json().then((responce) => {
-                console.log(responce);
-
-                if (responce.success) {
-                    alert(responce.message);
-                    window.location.href = "/";
-
-                }
-            });
-        });
+        alert("deleted")
     }
 
     render() {
