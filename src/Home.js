@@ -29,7 +29,7 @@ class Home extends Component {
 
         fetch('https://serajtodo.herokuapp.com/api/todoListRemove', options)
             .then(response => {
-                console.log(request)
+                console.log(response)
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -39,7 +39,7 @@ class Home extends Component {
             .then(data => {
                 alert("Deleted");
             })
-            .catch(error => this.setState({ error }));
+            .catch(error => { alert(error); });
     }
 
     render() {
